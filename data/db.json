@@ -1,0 +1,69 @@
+{
+  "data": [
+    {
+      "id": "0",
+      "name": "miki",
+      "password": "00",
+      "email": "mikiyasadugna@gmail.com",
+      "fileManager": {
+        "folder": [
+          {
+            "name": "folder-1",
+            "file": [
+              {
+                "name": "file-2"
+              }
+            ],
+            "folder": [
+              {
+                "name": "folder-3"
+              },
+              {
+                "name": "folder-4",
+                "folder": [
+                  {
+                    "name": "folder-5",
+                    "folder": [
+                      {
+                        "name": "folder-6",
+                        "file": [
+                          {
+                            "name": "file-7"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "folder-8",
+            "file": [
+              {
+                "name": "file-9"
+              }
+            ]
+          },
+          {
+            "name": "folder-10",
+            "file": [
+              {
+                "name": "file-11"
+              }
+            ]
+          }
+        ],
+        "file": [
+          {
+            "name": "file-8"
+          },
+          {
+            "name": "file-9"
+          }
+        ]
+      }
+    }
+  ]
+}
