@@ -8,6 +8,7 @@ export const useDataStore = defineStore("counter", {
       data: "",
       userName: "",
       loggedIn: false,
+      documentName : ""
     };
   },
   actions: {

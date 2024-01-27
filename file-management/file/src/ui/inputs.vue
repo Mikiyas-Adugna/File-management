@@ -23,27 +23,26 @@ export default {
       if (dataStore.category !== "file")
         updatedFileManger = createNewFolder(
           fileManager,
-          "folder-4",
+          dataStore.documentName,
           documentName
         );
       else
         updatedFileManger = createNewFile(
           fileManager,
-          "folder-4",
+          dataStore.documentName,
           documentName
         );
       updateUserFile(0, updatedFileManger);
     }
 
+    // these function are identical will work on that latter
 
-    // these function are identical will work on that latter 
-    
     function createNewFolder(fileManager, parentFolderName, newFolderName) {
       if (fileManager.folder) {
         for (const folder of fileManager.folder) {
           if (folder.name === parentFolderName) {
-            if (!folder.file) {
-              folder.file = [];
+            if (!folder.folder) {
+              folder.folder = [];
             }
             folder.folder.push({ name: newFolderName, file: [], folder: [] });
             return fileManager;
@@ -55,7 +54,7 @@ export default {
             newFolderName
           );
           if (result) {
-            return result; 
+            return fileManager;
           }
         }
       }
@@ -75,7 +74,7 @@ export default {
 
           const result = createNewFile(folder, parentFolderName, newFileName);
           if (result) {
-            return result;
+            return fileManager;
           }
         }
       }

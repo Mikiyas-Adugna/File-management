@@ -6,58 +6,68 @@
       "password": "00",
       "email": "mikiyasadugna@gmail.com",
       "fileManager": {
-        "file": [
-          {
-            "name": "file-2"
-          }
-        ],
         "folder": [
           {
-            "name": "folder-3"
-          },
-          {
-            "name": "folder-4",
+            "name": "folder-5",
             "folder": [
               {
-                "name": "folder-5",
-                "folder": [
+                "name": "folder-6",
+                "file": [
                   {
-                    "name": "folder-6",
-                    "file": [
-                      {
-                        "name": "file-7"
-                      }
-                    ]
+                    "name": "file-7"
                   }
                 ]
               },
               {
-                "name": "folder-12",
-                "file": [],
-                "folder": []
-              },
-              {
-                "name": "file-67",
-                "file": [],
-                "folder": []
-              },
-              {
-                "name": "folder-89",
-                "file": [],
-                "folder": []
+                "name": "folder-59849",
+                "file": [
+                  {
+                    "name": "file-90"
+                  },
+                  {
+                    "name": "mki"
+                  }
+                ],
+                "folder": [
+                  {
+                    "name": "folder-567",
+                    "file": [],
+                    "folder": []
+                  }
+                ]
               }
             ],
             "file": [
               {
-                "name": "file-2"
-              },
-              {
-                "name": "Mikiyas"
-              },
-              {
-                "name": "miki"
+                "name": "file-65"
               }
             ]
+          },
+          {
+            "name": "folder-12",
+            "file": [],
+            "folder": []
+          },
+          {
+            "name": "file-67",
+            "file": [],
+            "folder": []
+          },
+          {
+            "name": "folder-89",
+            "file": [],
+            "folder": []
+          }
+        ],
+        "file": [
+          {
+            "name": "file-2"
+          },
+          {
+            "name": "Mikiyas"
+          },
+          {
+            "name": "miki"
           }
         ]
       }
