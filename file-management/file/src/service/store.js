@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { addToExplorer } from "./allInOne";
 
 export const useDataStore = defineStore("counter", {
   state: () => {
@@ -7,7 +6,8 @@ export const useDataStore = defineStore("counter", {
       avail: true,
       category: "",
       data: "",
-      signUp: false,
+      userName: "",
+      loggedIn: false,
     };
   },
   actions: {
@@ -15,17 +15,19 @@ export const useDataStore = defineStore("counter", {
       this.category = type === "file" ? "file" : "folder";
       this.visibility;
     },
-
-    isSignUp(signUpBefore) {
-      if (signUpBefore) {
-        this.signUp = !this.signUp;
-      }
+    setUserName(name) {
+      this.userName = name;
     },
-   
   },
   getters: {
     visibility() {
       return (this.avail = !this.avail);
+    },
+    isValid() {
+      return (this.valid = !this.valid);
+    },
+    isLoggedIn() {
+      return (this.loggedIn = !this.loggedIn);
     },
   },
 });

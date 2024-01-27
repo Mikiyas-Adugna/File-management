@@ -1,9 +1,6 @@
 <template>
-  <ul v-if="items.length > 0" class="w-full px-8 mt-6 space-y-1">
-    <li
-      v-for="name in items"
-      class="bg-gray-300 px-3 py-1 rounded-lg w-full flex flex-col"
-    >
+  <ul v-if="items.length > 0" class="w-full mt-6">
+    <li v-for="name in items" class="hover:bg-gray-300 px-3 py-2 flex flex-col">
       {{ name }}
     </li>
   </ul>
@@ -18,6 +15,7 @@ export default {
   setup() {
     const dataStore = useDataStore();
     const items = ref([]);
+    let documents = ref({});
 
     userData();
     async function userData() {
@@ -28,11 +26,11 @@ export default {
     function documentList(fileManager) {
       if (fileManager.folder) {
         for (const folder of fileManager.folder) {
-          console.log("Folder:", folder.name);
+          items.value.push(folder.name);
 
           if (folder.file) {
             for (const file of folder.file) {
-              console.log("File:", file.name);
+              items.value.push(file.name);
             }
           }
 

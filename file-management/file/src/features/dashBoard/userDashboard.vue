@@ -16,8 +16,15 @@
       <inputs v-if="!dataStore.avail" />
       <lists />
     </div>
-    <div class="space-x-2 px-4 py-3"></div>
-    <div>display</div>
+    <div
+      class="space-x-2 px-12 py-1 bg-gray-300 flex items-center justify-between"
+    >
+      <p class="text-xl font-semibold">
+        {{ dataStore.userName.toUpperCase() }}
+      </p>
+      <btn :btnName="'Logout'" @click="toLoginPage()"></btn>
+    </div>
+    <div class="bg-white pl-24 pt-24 text-5xl font-semibold">Display</div>
   </div>
 </template>
 
@@ -26,6 +33,7 @@ import btn from "../../ui/button.vue";
 import inputs from "../../ui/inputs.vue";
 import { useDataStore } from "@/service/store";
 import lists from "../../ui/lists.vue";
+import { useRouter } from "vue-router";
 
 export default {
   name: "userDashboard",
@@ -36,8 +44,12 @@ export default {
   },
   setup() {
     const dataStore = useDataStore();
-
-    return { dataStore };
+    const router = useRouter();
+    dataStore.setUserName(router.currentRoute.value.params.userName);
+    function toLoginPage() {
+      router.replace("/");
+    }
+    return { dataStore, toLoginPage };
   },
 };
 </script>

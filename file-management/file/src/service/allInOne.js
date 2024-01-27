@@ -19,6 +19,8 @@ export async function allUser() {
   return data;
 }
 
+
+
 export async function updateUserFile(userId, fileManager) {
   const url = `${DATA_URL}/${userId}`;
   console.log(fileManager);
@@ -45,27 +47,37 @@ export async function updateUserFile(userId, fileManager) {
   }
 }
 
+
 export async function createUser(user) {
-  const { name, password, email, folder, file } = user;
   const res = await fetch(`${DATA_URL}`, {
     method: "POST",
     headers: {
       "Content-Type": "Application/json",
     },
-    body: JSON.stringify({ name, password, email, folder, file }),
+    body: JSON.stringify(user),
   });
 
   if (!res.ok) throw new Error("Failed to create user");
 }
 
-export async function isSignUpBefore(user) {
-  const dataStore = useDataStore();
-  const { name, password } = user;
-  const data = await allUser(user);
 
-  const signUpBefore = data.find(
-    (user) => user.name === name && user.password === password
-  );
-  console.log(signUpBefore);
-  dataStore.isSignUp(signUpBefore);
+
+export async function authentication(user, userAction) {
+  const { name, password } = user;
+  const data = await allUser();
+
+  if (userAction === "signUp") {
+    const isUserNameTaken = data.find((user) => user.name === name);
+    if (isUserNameTaken) return true;
+    else return false;
+  } else {
+    const signUpBefore = data.find(
+      (user) => user.name === name && user.password === password
+    );
+
+    if (signUpBefore) return true;
+    else return false;
+  }
+  // const dataStore = useDataStore();
+  // dataStore.isSignUp(signUpBefore);
 }

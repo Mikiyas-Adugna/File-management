@@ -3,11 +3,7 @@
     type="text"
     class="inline-block outline-orange-200 focus:border focus:border-orange-200 border px-3 py-1 rounded-md"
     v-model="documentName"
-    @keyup.enter="
-      dataStore.category === 'file'
-        ? NewFolder(documentName)
-        : createNewFile(documentName)
-    "
+    @keyup.enter="createNewDocument(documentName)"
   />
 </template>
 
@@ -19,33 +15,73 @@ export default {
   setup() {
     const documentName = ref("");
     const dataStore = useDataStore();
-    NewFolder();
-    async function NewFolder(documentName) {
-      // const updatedFileManger = await createNewFolder("folder-4", "folder-1");
-      // updateUserFile(0, updatedFileManger);
+
+    async function createNewDocument(documentName) {
+      dataStore.visibility;
+      let updatedFileManger = {};
+      const { fileManager } = await addToExplorer(0);
+      if (dataStore.category !== "file")
+        updatedFileManger = createNewFolder(
+          fileManager,
+          "folder-4",
+          documentName
+        );
+      else
+        updatedFileManger = createNewFile(
+          fileManager,
+          "folder-4",
+          documentName
+        );
+      updateUserFile(0, updatedFileManger);
     }
-    // async function createNewFolder(documentName, parent) {
-    //   const data = await addToExplorer(0);
-    //   const wantedFolder = data.fileManager.folder.find(
-    //     (folder) => folder.name === parent
-    //   );
 
-    //   if (wantedFolder && wantedFolder.folder) {
-    //     const existingDocument = wantedFolder.folder.find(
-    //       (folder) => folder.name === documentName
-    //     );
-    //     if (existingDocument) {
-    //       console.log("the folder already exist"  );
-    //       return;
-    //     } else wantedFolder.folder.push({ name: documentName });
-    //   } else wantedFolder.folder = [{ name: documentName }];
 
-    //   return data.fileManager;
-    // }
+    // these function are identical will work on that latter 
+    
+    function createNewFolder(fileManager, parentFolderName, newFolderName) {
+      if (fileManager.folder) {
+        for (const folder of fileManager.folder) {
+          if (folder.name === parentFolderName) {
+            if (!folder.file) {
+              folder.file = [];
+            }
+            folder.folder.push({ name: newFolderName, file: [], folder: [] });
+            return fileManager;
+          }
 
-    function createNewFile() {}
+          const result = createNewFolder(
+            folder,
+            parentFolderName,
+            newFolderName
+          );
+          if (result) {
+            return result; 
+          }
+        }
+      }
+    }
 
-    return { documentName, dataStore, NewFolder, createNewFile };
+    function createNewFile(fileManager, parentFolderName, newFileName) {
+      if (fileManager.folder) {
+        for (const folder of fileManager.folder) {
+          if (folder.name === parentFolderName) {
+            console.log("success");
+            if (!folder.file) {
+              folder.file = [];
+            }
+            folder.file.push({ name: newFileName });
+            return fileManager;
+          }
+
+          const result = createNewFile(folder, parentFolderName, newFileName);
+          if (result) {
+            return result;
+          }
+        }
+      }
+    }
+
+    return { documentName, dataStore, createNewDocument };
   },
 };
 </script>
